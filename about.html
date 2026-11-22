@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>关于本站 — 千禧倒计时站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="browser">
+  <div class="bar"><span>关于本站 - 千禧倒计时站 - Microsoft Internet Explorer</span>
+    <span class="dots"><span class="btn-mini">_</span><span class="btn-mini">□</span><span class="btn-mini">×</span></span></div>
+  <div class="bar2"><button class="nav-b">←</button><button class="nav-b">→</button><button class="nav-b">⌂</button>
+    <div class="addr"><b>地址</b><span>http://www.millennium-2000.net/about.htm</span></div><button class="nav-b">→</button></div>
+  <div class="page">
+    <div class="menubar">
+      <a href="index.html">首页</a><span class="sep">|</span>
+      <a href="guestbook.html">留言板</a><span class="sep">|</span>
+      <a href="diary.html">站长日记</a><span class="sep">|</span>
+      <a href="album.html">我的相册</a><span class="sep">|</span>
+      <a href="links.html">友情链接</a><span class="sep">|</span>
+      <a href="about.html" class="cur">关于本站</a>
+    </div>
+    <div class="cols"><main>
+      <div class="panel"><div class="cap"><span>■ 关于本站</span><span class="x">_</span></div>
+        <div class="in">
+          <h2>一个 1999 年的个人主页</h2>
+          <p>你好。这里是一个虚构的千禧年倒计时站，模拟 1999 年末的個人网页氛围。站长"满仔"、44 位守岁者、那晚发生的一切，都是这个故事的一部分。</p>
+          <p>这是一个 <b>ARG（替代现实游戏）</b>：线索藏在留言板、日记、相册和友情链接里。顺着它们走下去，你会读到那个没讲完的故事。</p>
+          <hr>
+          <h3>玩法提示</h3>
+          <p>1. 从<a href="guestbook.html">留言板</a>读起，注意时间顺序和"多出来的那个人"。</p>
+          <p>2. <a href="diary.html">日记</a>会告诉你在哪里找口令。</p>
+          <p>3. 口令在<a href="album.html">相册</a>的一张屏幕上。</p>
+          <p>4. <a href="links.html">友情链接</a>最下面有回放入口，输入口令即可进入。</p>
+          <hr>
+          <div class="warn">
+            <b>内容说明：</b>本站是悬疑氛围的虚构创作，不含血腥、违法或真实有害内容。所有图片为免费公版图库示意图；音乐由浏览器实时合成。所有进度只保存在你自己的浏览器里，不上传任何信息。
+          </div>
+          <p class="tiny" style="margin-top:12px">如果你卡住了，记住那句反复出现的话——"还差一个"。以及满仔的警告："别按回车。"</p>
+        </div></div>
+    </main>
+    <aside class="side">
+      <div class="panel"><div class="cap"><span>■ 站点地图</span></div><div class="in">
+        <p><a href="index.html">→ 首页</a></p><p><a href="guestbook.html">→ 留言板（44 条）</a></p>
+        <p><a href="diary.html">→ 站长日记（7 篇）</a></p><p><a href="album.html">→ 相册（6 张）</a></p>
+        <p><a href="links.html">→ 友情链接</a></p>
+      </div></div>
+      <div class="panel"><div class="cap"><span>■ 重新开始</span></div><div class="in">
+        <button class="winbtn" id="resetBtn" style="width:100%">清空我的进度</button>
+        <p class="tiny" style="margin-top:8px">想从头体验？点一下即可。</p>
+      </div></div>
+    </aside></div>
+    <div class="foot"><div>© 1999 千禧倒计时站 · 本站为虚构作品 · ARG 体验</div>
+      <div style="margin-top:6px"><span class="ie"><b>e</b> 最佳浏览：Internet Explorer 5.0 · 800×600</span></div></div>
+  </div>
+  <div class="statusbar"><span>完成</span><span>虚构作品 · 无真实个人信息</span><span>Internet 区域</span></div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+document.getElementById('resetBtn').addEventListener('click',function(){
+  ['m2000_flags','m2000_visits','m2000_answer','m2000_line','m2000_crt'].forEach(function(k){try{localStorage.removeItem(k)}catch(e){}});
+  this.textContent='已清空，刷新即可重来';
+});
+</script>
+</body>
+</html>
