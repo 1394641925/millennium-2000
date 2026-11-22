@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>留言板 — 千禧倒计时站</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="browser">
+  <div class="bar"><span>留言板 - 千禧倒计时站 - Microsoft Internet Explorer</span>
+    <span class="dots"><span class="btn-mini">_</span><span class="btn-mini">□</span><span class="btn-mini">×</span></span></div>
+  <div class="bar2"><button class="nav-b">←</button><button class="nav-b">→</button><button class="nav-b">⌂</button>
+    <div class="addr"><b>地址</b><span>http://www.millennium-2000.net/guestbook.htm</span></div><button class="nav-b">→</button></div>
+  <div class="page">
+    <div class="menubar">
+      <a href="index.html">首页</a><span class="sep">|</span>
+      <a href="guestbook.html" class="cur">留言板</a><span class="sep">|</span>
+      <a href="diary.html">站长日记</a><span class="sep">|</span>
+      <a href="album.html">我的相册</a><span class="sep">|</span>
+      <a href="links.html">友情链接</a><span class="sep">|</span>
+      <a href="about.html">关于本站</a>
+    </div>
+
+    <div class="cols">
+      <main>
+        <div class="panel"><div class="cap"><span>■ 留言板 · 共 44 条</span><span class="x">_</span></div>
+          <div class="in">
+            <h2>大家的留言</h2>
+            <p class="tiny">按时间排列。前 20 条是跨年那晚之前留下的，后面……是那晚之后。你可以往下慢慢看。</p>
+            <hr>
+            <div id="gbList"></div>
+          </div></div>
+      </main>
+      <aside class="side">
+        <div class="panel"><div class="cap"><span>■ 统计</span></div><div class="in">
+          <p>留言总数：<b>44</b></p>
+          <p>最后一条时间：<span class="red mono">23:59:59</span></p>
+          <p>在线网友：<b>44</b> 人</p>
+          <p class="tiny">（浏览器显示"45"，但名单上只有 44 个名字。多出来的那个是谁？）</p>
+        </div></div>
+        <div class="panel"><div class="cap"><span>■ 版主公告</span></div><div class="in">
+          <p class="tiny">留言板已锁定，无法新增留言。如果你是第 45 个人——不用留言了。<a href="about.html">去看看别的</a>吧。</p>
+        </div></div>
+      </aside>
+    </div>
+
+    <div class="foot"><div>© 1999 千禧倒计时站 · 满仔制作 · 本站为虚构作品</div>
+      <div style="margin-top:6px"><span class="ie"><b>e</b> 最佳浏览：Internet Explorer 5.0 · 800×600</span></div></div>
+  </div>
+  <div class="statusbar"><span>完成</span><span>44 条留言 · 最后更新 1999-12-31</span><span>Internet 区域</span></div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+// 留言数据：叙事节奏由轻松 → 疑惑 → 不安 → 惊惧
+var MSGS=[
+  ["阿May","1999-12-01 21:03:12","满仔这个主页好酷！！我收藏了，2000年一定要再来看！",""],
+  ["大头","1999-12-05 18:22:40","倒计时做得真好，比我家的电子表还准 :D","odd"],
+  ["小薇","1999-12-10 20:11:05","大家都来守岁啊！我准备了一堆零食，边吃边等2000年~",""],
+  ["阿May","1999-12-15 22:47:33","话说「千年虫」到底会不会让电脑崩掉啊？我妈让我备份软盘了","odd"],
+  ["满仔","1999-12-18 19:30:00","放心吧！我这个站是纯 HTML 的，没有千年虫（大概）。到时候见！",""],
+  ["老K","1999-12-20 23:59:10","路过留个爪。1999 快走吧，我受够这一年了。","odd"],
+  ["小薇","1999-12-22 20:05:51","满仔，跨年那天你打算干嘛呀？",""],
+  ["满仔","1999-12-22 20:40:17","守着这个网站啊。我约了朋友们一起，在聊天室里数倒计时。","odd"],
+  ["大头","1999-12-24 17:15:29","算我一个！我带饼干（笑）",""],
+  ["阿May","1999-12-25 12:08:44","圣诞快乐！离 2000 年又近了一天~","odd"],
+  ["匿名","1999-12-27 03:17:02","你们确定时间是 1999 年吗？我的电脑显示 2000 年了。",""],
+  ["老K","1999-12-27 09:33:20","楼上别吓人，肯定是你的CMOS电池没电了。","odd"],
+  ["满仔","1999-12-28 21:12:08","我也看到过一次……凌晨三点多，机器自己亮了。屏幕上有字，但第二天就不记得写了什么。","spooky"],
+  ["小薇","1999-12-28 22:00:19","满仔你别吓我啊！！",""],
+  ["匿名","1999-12-29 03:17:44","字是：还差一个。","spooky"],
+  ["大头","1999-12-29 08:12:00","谁啊？？恶作剧请适可而止","odd"],
+  ["阿May","1999-12-30 19:40:55","我数了数，我们约定守岁的好像……是 44 个人？",""],
+  ["老K","1999-12-30 20:15:30","44？我怎么记得是 45。","odd"],
+  ["小薇","1999-12-30 20:18:02","名单上明明只有 44 个名字啊。那第 45 个是谁？","spooky"],
+  ["满仔","1999-12-31 12:00:00","今天就是 2000 年了。晚上 23:59 我们聊天室见，一个都不许少。",""],
+  ["阿May","1999-12-31 22:10:31","来啦！聊天室里有 44 个人，热闹！","odd"],
+  ["大头","1999-12-31 22:31:09","我带了数码相机，等下拍一张千禧年的合影！",""],
+  ["小薇","1999-12-31 23:02:44","倒计时开始咯——","odd"],
+  ["老K","1999-12-31 23:20:11","奇怪，聊天室显示的在线人数是 45……可我数名字只有 44 个。","spooky"],
+  ["匿名","1999-12-31 23:33:00","第 45 个是我吗？你们看不见我，对不对。","spooky"],
+  ["阿May","1999-12-31 23:40:18","别开这种玩笑，不好笑。","odd"],
+  ["大头","1999-12-31 23:45:52","倒计时怎么停在 01 了？刷新也没用！",""],
+  ["满仔","1999-12-31 23:48:03","别刷了。它不会走的。","spooky"],
+  ["小薇","1999-12-31 23:50:19","满仔？你怎么了，说话怪怪的……","odd"],
+  ["满仔","1999-12-31 23:52:44","聊天室关不掉了。我打「退出」，没反应。屏幕上的字越来越多。","spooky"],
+  ["匿名","1999-12-31 23:53:10","它说：还差一个。把它补上，就放你们走。","spooky"],
+  ["老K","1999-12-31 23:54:37","什么意思？？谁「还差一个」？？",""],
+  ["阿May","1999-12-31 23:55:02","我好怕，我想下线……","odd"],
+  ["大头","1999-12-31 23:56:15","下线键也失灵了！","spooky"],
+  ["小薇","1999-12-31 23:57:48","满仔！你之前说的「别按那个键」是哪个键？！",""],
+  ["满仔","1999-12-31 23:58:20","不要按回车。它一直在等一句「留下来的话」。","spooky"],
+  ["匿名","1999-12-31 23:58:59","来不及了。已经有人在打字了。","spooky"],
+  ["老K","1999-12-31 23:59:12","谁在打字？聊天室里没有人在说话啊……","odd"],
+  ["阿May","1999-12-31 23:59:30","屏幕上出现了一行字，不是我们打的。它写着——","spooky"],
+  ["小薇","1999-12-31 23:59:45","写什么？？",""],
+  ["满仔","1999-12-31 23:59:50","写的是我们的名字。44 个名字，一个不少。然后是我的。","spooky"],
+  ["匿名","1999-12-31 23:59:55","还差最后一个。","spooky"],
+  ["大头","1999-12-31 23:59:58","满仔！！我们在相册里留了张合影，你看到了吗——","last"],
+  ["满仔","1999-12-31 23:59:59","看到了。密码我写在日记里了。如果有人能看到这些——别按回车。别留下那句话。我错了。","last"]
+];
+(function(){
+  var box=document.getElementById('gbList');
+  MSGS.forEach(function(m,i){
+    var d=document.createElement('div');
+    d.className='gb '+m[3];
+    d.innerHTML='<div class="hd"><span class="no">#'+(i+1)+'</span><b>'+m[0]+'</b><span>'+m[1]+'</span></div>'+m[2];
+    box.appendChild(d);
+  });
+  // 悄悄标记进度
+  if(window.M2000){window.M2000.mark('readgb')}
+})();
+</script>
+</body>
+</html>
