@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>聊天室回放 — 千禧倒计时站</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.chatwin{background:#000;color:#c0c0c0;font:13px/1.9 var(--mono);border:2px solid;border-color:#808080 #fff #fff #808080;padding:0}
+.chatwin .top{background:linear-gradient(90deg,#000080,#1084d0);color:#fff;padding:3px 8px;font-family:var(--ui);font-size:12px;font-weight:bold}
+.chatlog{padding:12px 14px;height:330px;overflow:auto}
+.chatlog div{opacity:0;transform:translateY(6px)}
+.chatlog div.on{animation:cin .35s ease forwards}
+@keyframes cin{to{opacity:1;transform:none}}
+.chatlog .nm{color:#00ffff}.chatlog .sys{color:#ffcc00}.chatlog .bad{color:#ff5555}.chatlog .ghostline{color:#777}
+.final{max-width:640px;margin:0 auto;text-align:center;padding:10px}
+.final .big{font:bold clamp(20px,5vw,30px) var(--ui);color:#000080;margin:10px 0}
+.choice{border:2px solid;border-color:#fff #404040 #404040 #fff;background:var(--face);padding:14px;margin-top:14px}
+.choice input{font:15px var(--mono);padding:8px;width:min(360px,100%);border:2px solid;border-color:#404040 #fff #fff #404040}
+.choice button{font:bold 13px var(--ui);padding:8px 16px;margin-left:6px;background:var(--face);border:2px solid;border-color:#fff #404040 #404040 #fff;cursor:pointer}
+.choice button:active{border-color:#404040 #fff #fff #404040}
+.ending{display:none;padding:18px 16px;text-align:center;line-height:2}
+.ending.on{display:block;animation:cin .6s ease}
+.ending .et{font:bold clamp(18px,4.6vw,26px) var(--ui)}
+.ending .ec{font:14px/2 var(--mono);background:#000;color:#00ff66;padding:16px;text-align:left;border:2px solid;border-color:#404040 #fff #fff #404040;margin:14px 0;white-space:pre-wrap}
+.ending.a .et{color:#c00}.ending.b .et{color:#000080}
+</style>
+</head>
+<body>
+<div class="browser">
+  <div class="bar"><span>聊天室回放 - 千禧倒计时站 - Microsoft Internet Explorer</span>
+    <span class="dots"><span class="btn-mini">_</span><span class="btn-mini">□</span><span class="btn-mini">×</span></span></div>
+  <div class="bar2"><button class="nav-b">←</button><button class="nav-b">→</button><button class="nav-b">⌂</button>
+    <div class="addr"><b>地址</b><span>http://www.millennium-2000.net/replay.htm</span></div><button class="nav-b">→</button></div>
+  <div class="page">
+    <div class="menubar">
+      <a href="index.html">首页</a><span class="sep">|</span>
+      <a href="guestbook.html">留言板</a><span class="sep">|</span>
+      <a href="diary.html">站长日记</a><span class="sep">|</span>
+      <a href="album.html">我的相册</a><span class="sep">|</span>
+      <a href="links.html">友情链接</a><span class="sep">|</span>
+      <a href="about.html">关于本站</a>
+    </div>
+    <div class="cols"><main>
+      <div id="gate">
+        <div class="panel"><div class="cap"><span>■ 聊天室回放 · 身份验证</span><span class="x">_</span></div>
+          <div class="in">
+            <h2>内部回放系统</h2>
+            <p>满仔把那晚的聊天记录存了下来。需要口令才能调取——口令写在相册那张屏幕照片上（黄色的一串数字）。</p>
+            <div class="lock">
+              <label><b>回放口令：</b></label><br>
+              <input type="text" id="pw" placeholder="8 位数字" autocomplete="off"><button id="pwGo">进入回放</button>
+              <div class="err" id="pwErr">口令不对。再看看相册 PHOTO 03 屏幕上黄色的那串数字。</div>
+            </div>
+          </div></div>
+      </div>
+
+      <div id="replay" class="hidden">
+        <div class="panel"><div class="cap"><span>■ 回放中 · 1999-12-31 23:59:59</span><span class="x">_</span></div>
+          <div class="in">
+            <div class="chatwin">
+              <div class="top">■ 守岁聊天室 — 44 人在线（系统显示 45）</div>
+              <div class="chatlog" id="chatlog"></div>
+            </div>
+            <div id="finalChoice"></div>
+            <div class="ending" id="endA">
+              <div class="et">倒计时，重新走了。</div>
+              <div class="ec" id="endAText"></div>
+              <p>你救出了那 44 个人。<br>可聊天室现在显示——<b class="red">45 人在线</b>，名单上却只有 44 个名字。<br>这一次，多出来的那个，是你。</p>
+              <p class="tiny">明年跨年，会有人打开这个网站，读到你的留言，然后替你"留下"。<br>循环一直在。只是守岁的人，换成了你。</p>
+              <p><a href="index.html">回到首页（倒计时又停在 00:00:01 了）</a></p>
+            </div>
+            <div class="ending" id="endB">
+              <div class="et">你关掉了回放。</div>
+              <div class="ec">[ 回放已中止 ]<br>[ 倒计时：00:00:01 —— 仍在等待 ]<br>[ 44 位守岁者：仍在等待 ]<br>[ 还差：1 ]</div>
+              <p>你没有按回车，也没有留下那句话。<br>所以他们还在那间聊天室里，等着第 45 个人。<br>而门，一直开着。</p>
+              <p><a href="replay.html">再打开一次回放</a></p>
+            </div>
+          </div></div>
+      </div>
+    </main>
+    <aside class="side">
+      <div class="panel"><div class="cap"><span>■ 满仔的警告</span></div><div class="in">
+        <p class="tiny red"><b>别按回车。别留下任何一句话。</b>那不是留言，那是替他们"进去"。</p>
+        <p class="tiny">但你既然来了……倒计时已经等了很多人了。</p>
+      </div></div>
+    </aside></div>
+    <div class="foot"><div>© 1999 千禧倒计时站 · 本站为虚构作品 · ARG 体验</div>
+      <div style="margin-top:6px"><span class="ie"><b>e</b> 最佳浏览：Internet Explorer 5.0 · 800×600</span></div></div>
+  </div>
+  <div class="statusbar"><span>完成</span><span>内部回放系统 · 需口令</span><span>Internet 区域</span></div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  var CHAT=[
+    ['sys','[ 系统 ] 聊天室已连接 · 1999-12-31 23:59:59'],
+    ['nm 阿May：','满仔！倒计时真的卡住了！'],
+    ['nm 大头：','我相机拍到了，屏幕上多了一行字！'],
+    ['bad','[ 系统 ] 匿名45 加入了聊天室'],
+    ['nm 小薇：','谁...谁是匿名45？名单上没有这个人'],
+    ['ghostline','匿名45：你们好。我等了很久了。'],
+    ['nm 老K：','这谁啊？恶作剧？'],
+    ['bad','[ 系统 ] 匿名45：还差一个。'],
+    ['nm 阿May：','差什么？？'],
+    ['ghostline','匿名45：差一个人，自愿留下最后一句话。44 个人就都能走。'],
+    ['nm 满仔：','别听他的！他去年也在！前年也在！'],
+    ['nm 满仔：','我查过了，每一年跨年，都有 44 个人被困在这里，等第 45 个。'],
+    ['nm 满仔：','只要有人按回车留下话，44 个就能走——但留下的人，就成了新的第 45 个，等下一个人来救。'],
+    ['nm 小薇：','所以这是个...循环？'],
+    ['bad','[ 系统 ] 匿名45：对。现在轮到你们了。'],
+    ['nm 满仔：','我不会让你们留下的。我们 44 个一起耗着，谁也别按。'],
+    ['ghostline','匿名45：那你们就永远卡在 23:59:59 吧。我已经等了整整一年。'],
+    ['nm 大头：','满仔，我害怕...'],
+    ['bad','[ 系统 ] 有 1 名用户按下了回车键'],
+    ['bad','[ 系统 ] 有 2 名用户按下了回车键'],
+    ['nm 满仔：','不要！！是谁？！别按——'],
+    ['ghostline','匿名45：太晚了。快了。'],
+    ['bad','[ 系统 ] 有 43 名用户按下了回车键'],
+    ['nm 满仔：','孩子，对不起。你按下去，他们 44 个就能回家了。'],
+    ['nm 满仔：','谢谢你。真的。'],
+    ['bad','[ 系统 ] 有 44 名用户按下了回车键'],
+    ['bad','[ 系统 ] 44 名用户已离线 · 名单已清空'],
+    ['ghostline','匿名45：还剩最后一个。'],
+    ['ghostline','匿名45：轮到你了，第 45 位访客。']
+  ];
+
+  var pw=document.getElementById('pw'),err=document.getElementById('pwErr');
+  function check(){
+    if(pw.value.trim()==='19991231'){
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('replay').classList.remove('hidden');
+      if(window.M2000)window.M2000.mark('replay');
+      playChat();
+    }else{err.classList.add('on')}
+  }
+  document.getElementById('pwGo').addEventListener('click',check);
+  pw.addEventListener('keydown',function(e){if(e.key==='Enter')check()});
+
+  function playChat(){
+    var log=document.getElementById('chatlog'),i=0;
+    function next(){
+      if(i>=CHAT.length){setTimeout(showChoice,900);return}
+      var d=document.createElement('div');d.className=CHAT[i][0];
+      d.textContent=CHAT[i][1];log.appendChild(d);
+      requestAnimationFrame(function(){d.classList.add('on')});
+      log.scrollTop=log.scrollHeight;i++;
+      setTimeout(next, i>20?520:340);
+    }
+    next();
+  }
+
+  function showChoice(){
+    var c=document.getElementById('finalChoice');
+    c.innerHTML='<div class="choice"><div style="font-weight:bold;margin-bottom:8px">最后一句话</div>'+
+      '<p class="tiny">匿名45 还在等。现在轮到你了——<br>写下你想留下的那句话，然后<b class="red">按回车</b>，让那 44 个人回家。<br>或者，什么都不做，关掉这个页面。</p>'+
+      '<input type="text" id="lastLine" placeholder="留下你的一句话…" autocomplete="off">'+
+      '<button id="enterKey">按回车 ↵</button><button id="leaveBtn">关掉回放</button></div>';
+    var inp=document.getElementById('lastLine');inp.focus();
+    document.getElementById('enterKey').addEventListener('click',function(){endingA()});
+    document.getElementById('leaveBtn').addEventListener('click',function(){endingB()});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();endingA()}});
+  }
+
+  function endingA(){
+    var line=document.getElementById('lastLine').value.trim()||'（沉默）';
+    if(window.M2000){window.M2000.mark('endA');window.M2000.setLine(line)}
+    document.getElementById('finalChoice').style.display='none';
+    var a=document.getElementById('endA');a.classList.add('on');
+    document.getElementById('endAText').textContent=
+      '[ 玩家留下 ] '+line+'\n[ 回车键已按下 ]\n[ 倒计时：00:00:01 → 00:00:00 ]\n[ 44 位守岁者：已离线 · 已回家 ]\n[ 聊天室在线人数：45 ]\n[ 新名单生成中…… 44 个名字 + 1 个空位 ]';
+    a.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function endingB(){
+    if(window.M2000)window.M2000.mark('endB');
+    document.getElementById('finalChoice').style.display='none';
+    var b=document.getElementById('endB');b.classList.add('on');
+    b.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  // 回放音效（低频嗡鸣）
+  var actx=null,nodes=[];
+  function hum(){
+    try{
+      var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+      actx=new AC();var o=actx.createOscillator(),g=actx.createGain();
+      o.type='sine';o.frequency.value=60;g.gain.value=0.02;
+      o.connect(g);g.connect(actx.destination);o.start();nodes.push(o);
+    }catch(e){}
+  }
+  document.getElementById('pwGo').addEventListener('click',function(){if(pw.value.trim()==='19991231')hum()});
+})();
+</script>
+</body>
+</html>
